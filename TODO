@@ -1,0 +1,20 @@
+TODO LIST :
+
+- Implement the sized free list :
+  	    - Size functions : MEH
+	    - allocation of pages : MEH
+	    - finding metadata and blocks : NO
+
+- Implement Malloc : X
+
+- Implement Calloc : X
+
+- Implement Realloc : X
+
+- Implement Free : X
+
+-Speed optimization : ?
+
+-Space optimization : ?
+
+-Security optimization : ?

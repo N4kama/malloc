@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdint.h>
 
-#include "setup.h"
+#include "finder.h"
 
 __attribute__((visibility("default")))
 void *malloc(size_t __attribute__((unused)) size);

@@ -3,15 +3,13 @@
 
 #define _GNU_SOURCE
 
-#define NB_SIZES 8
-
 #include <string.h>
 #include <stdint.h>
 #include <sys/mman.h>
 
 #include "size.h"
 
-struct f__meta
+struct f_meta
 {
     void *prev;
     void *next;

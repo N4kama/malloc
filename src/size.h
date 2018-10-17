@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <string.h>
 
+#define NB_SIZE 8
 enum size
 {
     s_16 = 1,
@@ -17,5 +18,7 @@ enum size
 };
 
 size_t align_size(size_t size);
+size_t adjust_size(size_t size);
+enum size size_to_enum(size_t size);
 
 #endif /* !SIZE_H */

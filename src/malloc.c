@@ -3,7 +3,8 @@
 __attribute__((visibility("default")))
 void *malloc(size_t __attribute__((unused)) size)
 {
-    return NULL;
+    size = adjust_size(size);
+    struct p_meta *p_start = find_p_meta(size);
 }
 
 __attribute__((visibility("default")))

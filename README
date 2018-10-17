@@ -1,0 +1,30 @@
+MALLOC :
+
+MALLOC is a c program that allocates memory for other programs.
+
+       TO MODIFY !!!! 
+
+To build the program, just run the command "make" or "make all".
+To delete the program, just run "make clean".
+
+You can then call the program by typing "./myfind" followed by
+your arguments.
+
+You can also run automated tests by typing "make check"
+(this will compile the program if it wasn't already built).
+
+Usage :
+
+-./myfind <options> <path(s)> <expressions>
+
+--> Option can be any of the following (0 or many) :
+
+    <-[dHLP]>
+
+--> Expression can be any of the following (0 or many) :
+
+    <-name "<pattern>"> <-type [bcdflps]> <-print> <-exec <command>\;>
+
+    	   TO MODIFY !!!! /end
+
+Author : romain.baguet ING1
