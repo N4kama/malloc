@@ -1,7 +1,7 @@
-CFLAGS = -Wall -Wextra -Werror -pedantic -std=c99 -fPIC -fvisibility=hidden
+CFLAGS = -g -Wall -Wextra -Werror -pedantic -std=c99 -fPIC -fvisibility=hidden
 LDFLAGS = -shared
 TARGET_LIB = libmalloc.so
-OBJS = malloc.o
+OBJS = src/malloc.o src/size.o src/setup.o src/finder.o src/caster.o
 
 .PHONY: all ${TARGET_LIB} clean
 

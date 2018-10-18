@@ -5,6 +5,8 @@ void *malloc(size_t __attribute__((unused)) size)
 {
     size = adjust_size(size);
     struct p_meta *p_start = find_p_meta(size);
+    void *res = get_free_space(p_start);
+    return res;
 }
 
 __attribute__((visibility("default")))
