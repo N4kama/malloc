@@ -1,17 +1,20 @@
 TODO LIST :
 
 - Implement the sized free list :
-  	    - Size functions : MEH
-	    - allocation of pages : MEH
-	    - finding metadata and blocks : NO
+  	    - Size functions : OK
+	    - allocation of pages : OK
+	    - finding metadata and blocks : OK
 
-- Implement Malloc : X
+- Implement Malloc : OK (maybe still some errors)
 
 - Implement Calloc : X
 
 - Implement Realloc : X
 
-- Implement Free : X
+- Implement Free :
+  	    -Free of normalized blocks : MEH
+	    -Free of unormalized block : KO
+  	    -complete free : KO
 
 -Speed optimization : ?
 
