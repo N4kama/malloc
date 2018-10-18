@@ -1,23 +1,23 @@
 #include "finder.h"
 
-unsigned int no_space_in_page(struct p_meta *p_meta, size_t last_f_block)
+unsigned int no_space_in_page(struct p_meta *p_meta, uintptr_t last_f_block)
 {
     //No space in page if there is not enough space to put a new block
-    size_t addr = last_f_block;
-    size_t start = get_page_addr(addr);
-    size_t next = last_f_block + p_meta->size;
-    size_t new_start = get_page_addr(next);
+    uintptr_t addr = last_f_block;
+    uintptr_t start = get_page_addr(addr);
+    uintptr_t next = last_f_block + p_meta->size;
+    uintptr_t new_start = get_page_addr(next);
     if (start == new_start)
     {
-	return 1;
+	return 0;
     }
-    return 0;
+    return 1;
 }
 
 void update_free_ptr(struct p_meta *p_meta)
 {
-    size_t *f_list = caster(p_meta->f_list);
-    if (no_space_in_page(p_meta, *f_list))
+    uintptr_t f_list = (uintptr_t)p_meta->f_list;
+    if (no_space_in_page(p_meta, f_list))
     {
 	p_meta->f_list = NULL;
     }
@@ -39,6 +39,15 @@ void update_free_ptr(struct p_meta *p_meta)
 	}
 	p_meta->f_list = new;
     }
+}
+
+struct b_meta *find_b_meta(void *ptr)
+{
+    uintptr_t addr = (uintptr_t)ptr;
+    uintptr_t page_addr = get_page_addr(addr);
+    void *tmp = (void *)page_addr;
+    struct b_meta *res = tmp;
+    return res;
 }
 
 struct p_meta *find_p_meta(size_t size)

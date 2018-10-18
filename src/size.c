@@ -11,7 +11,6 @@ size_t adjust_size(size_t size)
     {
 	return 16;
     }
-    
     size--;
     size |= size >> 1;
     size |= size >> 2;
@@ -22,9 +21,9 @@ size_t adjust_size(size_t size)
     return size;
 }
 
-size_t get_page_addr(size_t b_addr)
+uintptr_t get_page_addr(uintptr_t b_addr)
 {
-    size_t res = b_addr;
-    res &= (1 << 11) - 1;
-    return res;
+    b_addr = b_addr >> 12;
+    b_addr = b_addr << 12;
+    return b_addr;
 }

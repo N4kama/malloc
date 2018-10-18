@@ -40,6 +40,7 @@ struct sized_f_list_meta
 };
 
 void setup_f_list(void *f_list);
+void new_free_ptr(struct p_meta *p_meta, struct f_meta *f_meta);
 void allocate_new_page(struct p_meta *p_meta);
 void create_page_meta(size_t size);
 void *get_head(void);
