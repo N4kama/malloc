@@ -2,9 +2,10 @@
 
 size_t max_blk(struct b_meta *b_meta)
 {
-    //size of page 4096 minus sizeof metadata (32)
+    //size of page minus sizeof metadata (32)
     size_t size = b_meta->size;
-    size_t max = (4096 - sizeof(struct b_meta)) / size;
+    size_t page_size = get_page_size(size);
+    size_t max = (page_size - sizeof(struct b_meta)) / size;
     return max;
 }
 

@@ -31,3 +31,11 @@ uintptr_t get_page_addr(uintptr_t b_addr)
     b_addr = b_addr << 12;
     return b_addr;
 }
+
+size_t get_page_size(size_t size)
+{
+    size = size >> 12;
+    size += 1;
+    size = size << 12;
+    return size;
+}

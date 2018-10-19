@@ -3,16 +3,18 @@ TODO LIST :
 - ADD THE CHECK FAILED_MAP TO MMAP !
 - Handle case where too much malloc of different size are done !
 
+-Some error may still be present but are very special cases.
+
 - Implement the sized free list :
   	    - Size functions : OK
 	    - allocation of pages : OK
 	    - finding metadata and blocks : OK
 
-- Implement Malloc : OK (maybe still some errors)
+- Implement Malloc : OK
 
-- Implement Calloc : X
+- Implement Calloc : OK
 
-- Implement Realloc : X
+- Implement Realloc : OK
 
 - Implement Free :
   	    -Free of normalized blocks : OK
