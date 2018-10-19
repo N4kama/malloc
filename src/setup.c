@@ -18,16 +18,27 @@ void new_free_ptr(struct p_meta *p_meta, struct f_meta *f_meta)
     struct b_meta *res = tmp;
     res->nb_blk -= 1;
     //relink the new block with the old f_list
-    f_meta->next = p_meta->f_list;
-    f_meta->prev = p_meta->f_list->prev;
-    p_meta->f_list->prev->next = f_meta;
-    p_meta->f_list->prev = f_meta;
-    p_meta->f_list = f_meta;
+    if (!p_meta->f_list)
+    {
+	//Free dans le cas ou la struct est pleine (pas assez de place pour un
+	//deuxieme block). Le ptr_free est nulle, f_meta devient ptr_free
+	setup_f_list(f_meta);
+	p_meta->f_list = f_meta;
+    }
+    else
+    {
+	f_meta->next = p_meta->f_list;
+	f_meta->prev = p_meta->f_list->prev;
+	p_meta->f_list->prev->next = f_meta;
+	p_meta->f_list->prev = f_meta;
+	p_meta->f_list = f_meta;
+    }
 }
 
 void allocate_new_page(struct p_meta *p_meta)
 {
-    void *addr = mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_PRIVATE
+    size_t len = p_meta->size + sizeof(struct b_meta);
+    void *addr = mmap(NULL, len, PROT_READ | PROT_WRITE, MAP_PRIVATE
 		      | MAP_ANONYMOUS, -1, 0);
     struct b_meta *page = addr;
     page->size = p_meta->size;

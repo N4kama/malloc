@@ -9,7 +9,11 @@ size_t adjust_size(size_t size)
 {
     if (size < 16)
     {
-	return 16;
+        return 16;
+    }
+    if (size > 1024)
+    {
+        return align_size(size);
     }
     size--;
     size |= size >> 1;

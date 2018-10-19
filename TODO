@@ -1,6 +1,7 @@
 TODO LIST :
 
 - ADD THE CHECK FAILED_MAP TO MMAP !
+- Handle case where too much malloc of different size are done !
 
 - Implement the sized free list :
   	    - Size functions : OK
@@ -14,9 +15,9 @@ TODO LIST :
 - Implement Realloc : X
 
 - Implement Free :
-  	    -Free of normalized blocks : MEH
-	    -Free of unormalized block : KO
-  	    -complete free : KO
+  	    -Free of normalized blocks : OK
+	    -Free of unormalized block : OK
+  	    -complete free : OK
 
 -Speed optimization : ?
 
