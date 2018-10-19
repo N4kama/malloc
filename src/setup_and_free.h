@@ -1,9 +1,7 @@
-#ifndef SETUP_H
-# define SETUP_H
+#ifndef SETUP_AND_FREE_H
+# define SETUP_AND_FREE_H
 
 #define _GNU_SOURCE
-
-#define NB_SIZE 8
 
 #include <string.h>
 #include <stdint.h>
@@ -45,4 +43,4 @@ void allocate_new_page(struct p_meta *p_meta);
 void create_page_meta(size_t size);
 void *get_head(void);
 
-#endif /* !SETUP_H */
+#endif /* !SETUP_AND_FREE_H */

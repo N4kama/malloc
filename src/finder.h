@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdint.h>
 
-#include "setup.h"
+#include "setup_and_free.h"
 
 size_t max_blk(struct b_meta *b_meta);
 unsigned int no_space_in_page(void *last_f_block);
