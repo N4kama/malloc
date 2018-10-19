@@ -1,5 +1,7 @@
 TODO LIST :
 
+- ADD THE CHECK FAILED_MAP TO MMAP !
+
 - Implement the sized free list :
   	    - Size functions : OK
 	    - allocation of pages : OK

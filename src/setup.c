@@ -11,10 +11,18 @@ void setup_f_list(void *f_list)
 
 void new_free_ptr(struct p_meta *p_meta, struct f_meta *f_meta)
 {
+    //Update nb_blk in page -> minus 1
+    uintptr_t addr = (uintptr_t)f_meta;
+    uintptr_t page_addr = get_page_addr(addr);
+    void *tmp = (void *)page_addr;
+    struct b_meta *res = tmp;
+    res->nb_blk -= 1;
+    //relink the new block with the old f_list
     f_meta->next = p_meta->f_list;
     f_meta->prev = p_meta->f_list->prev;
     p_meta->f_list->prev->next = f_meta;
     p_meta->f_list->prev = f_meta;
+    p_meta->f_list = f_meta;
 }
 
 void allocate_new_page(struct p_meta *p_meta)
@@ -30,6 +38,7 @@ void allocate_new_page(struct p_meta *p_meta)
     }
     page->prev = p_meta->next;
     page->next = p_meta->prev;
+    page->nb_blk = 0;
     p_meta->prev = page;
     p_meta->f_list = caster(page + 1);
     setup_f_list(p_meta->f_list);

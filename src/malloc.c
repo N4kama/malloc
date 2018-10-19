@@ -12,6 +12,10 @@ void *malloc(size_t __attribute__((unused)) size)
 __attribute__((visibility("default")))
 void free(void __attribute__((unused)) *ptr)
 {
+    if (!ptr)
+    {
+	return;
+    }
     struct b_meta *b_meta = find_b_meta(ptr);
     struct p_meta *p_meta = find_p_meta(b_meta->size);
     new_free_ptr(p_meta, ptr);

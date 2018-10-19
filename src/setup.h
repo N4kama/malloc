@@ -23,7 +23,7 @@ struct b_meta
     size_t size;
     struct b_meta *prev;
     struct b_meta *next;
-    void *unused;
+    size_t nb_blk;
 };
 
 struct p_meta
