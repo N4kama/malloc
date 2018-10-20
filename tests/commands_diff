@@ -17,31 +17,6 @@ tree
 tree tests
 tree src
 tree ../../
-od libmalloc.so
-clang --help
-tree ../../ing1
-tree ../../malloc
-find src/ ../../ing1 -name *.c -o -name *.sample
-find -type d
-find -type f
-find src/ tests/ -type f -o -type d
-find src/ tests/ -name src -o -print -name Makefile -o -print -o -print
-find -name test1 -o -name test2 -print
-find tests/ -exec pwd \;
-find src/ -exec md5sum {} \; -exec echo ok \;
-find src/ -exec pwd \; -exec echo -- {} -- \;
-tree -a
-tree -a ../../
-tree
-tree ../../
-tree -f
-tree -l
-tree -l ../../
-tree -f ../../
-tree -L 2
-tree -L 1 ../../
-tree -Q -P -s -ht
-tree -Q -P -s -h ../../
 find tests
 find
 find ../
@@ -57,3 +32,69 @@ find -P
 find -P tests
 find src/ tests/ -exec md5sum {} \; -exec echo ok \;
 find -L src/ tests/ -exec pwd \; -exec echo -- {} -- \;
+tree --help
+ip --help
+ip -h
+ip -d
+od Makefile
+od README
+od TODO
+factor --help
+cat --help
+tree --help
+od src/caster.c
+od src/finder.c
+od src/malloc.c
+od src/size.c
+od src/setup_and_free.c
+od -t a src/caster.c
+od -t a src/finder.c
+ip -force
+ip -s
+ip -o
+od -t x src/finder.c
+od -S 1000 src/malloc.c
+ip --help
+od -S 100 src/size.c
+od -S 10 src/setup_and_free.c
+find --help
+od --help
+ls --help
+head --help
+tar --help
+less --help
+tail --help
+tar -cf malloc.tar libmalloc.so
+rm malloc.tar
+find src/  -exec md5sum {} \;
+find -L src/ -exec pwd \;
+less Makefile
+head TODO
+tail TODO
+less README
+factor 1
+tree ../../ing1
+od libmalloc.so
+clang --help
+tree -a
+tree -a ../../
+tree
+tree ../../
+tree -f
+tree -l
+tree -l ../../
+tree -f ../../
+tree -L 2
+tree -L 1 ../../
+tree -Q -P -s -ht
+tree -Q -P -s -h ../../
+tree ../../malloc
+find src/ ../../ing1 -name *.c -o -name *.sample
+find -type d
+find -type f
+find src/ tests/ -type f -o -type d
+find src/ tests/ -name src -o -print -name Makefile -o -print -o -print
+find -name test1 -o -name test2 -print
+find tests/ -exec pwd \;
+find src/ -exec md5sum {} \; -exec echo ok \;
+find src/ -exec pwd \; -exec echo -- {} -- \;
