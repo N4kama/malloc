@@ -81,9 +81,28 @@ void allocate_new_page(struct p_meta *p_meta)
     setup_f_list(p_meta->f_list);
 }
 
+static void check_head_size(struct sized_f_list_meta **metaa)
+{
+    struct sized_f_list_meta *meta = *metaa;
+    size_t page_meta_len = meta->count_sized_list * sizeof(struct p_meta);
+    page_meta_len += sizeof(struct sized_f_list_meta);
+    if (page_meta_len + sizeof(struct p_meta) > meta->page_len)
+    {
+	//resize page
+	void *new = mmap(NULL, 2 * meta->page_len, PROT_READ | PROT_WRITE,
+			 MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+	memcpy(new, meta, meta->page_len);
+	munmap(meta, meta->page_len);
+	*metaa = new;
+	(*metaa)->page_len *= 2;
+	g_head = new;
+    }
+}
+
 void create_page_meta(size_t size)
 {
     struct sized_f_list_meta *meta = get_head();
+    check_head_size(&meta);
     struct p_meta *p_meta = caster(meta + 1);
     for (size_t i = 0; i < meta->count_sized_list; i++)
     {
