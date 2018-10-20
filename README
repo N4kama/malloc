@@ -2,29 +2,21 @@ MALLOC :
 
 MALLOC is a c program that allocates memory for other programs.
 
-       TO MODIFY !!!! 
+To build the library, just run the command "make" or "make all".
+To delete the library, just run "make clean".
 
-To build the program, just run the command "make" or "make all".
-To delete the program, just run "make clean".
-
-You can then call the program by typing "./myfind" followed by
-your arguments.
+You can then call any program with the libmalloc.so library by typing
+"LD_PRELOAD=./libmalloc.so" followed by your program and its arguments.
 
 You can also run automated tests by typing "make check"
 (this will compile the program if it wasn't already built).
+NB: "Make check" will ask your 2 parameters :
+    - First one is to choose between a small test or a heavy and long one.
+    - Second one is to choose whether to display the result of the programs
+      or not.
 
 Usage :
 
--./myfind <options> <path(s)> <expressions>
-
---> Option can be any of the following (0 or many) :
-
-    <-[dHLP]>
-
---> Expression can be any of the following (0 or many) :
-
-    <-name "<pattern>"> <-type [bcdflps]> <-print> <-exec <command>\;>
-
-    	   TO MODIFY !!!! /end
+- LD_PRELOAD=./libmalloc.so <program> [ option(s) ]
 
 Author : romain.baguet ING1
