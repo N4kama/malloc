@@ -1,11 +1,6 @@
 TODO LIST :
 
-- ADD THE CHECK FAILED_MAP TO MMAP !
-- Handle case where too much malloc of different size are done !
-
--Some error may still be present but are very special cases.
-
-- Implement the sized free list :
+- Implement the sized free list : OK
   	    - Size functions : OK
 	    - allocation of pages : OK
 	    - finding metadata and blocks : OK
@@ -16,13 +11,19 @@ TODO LIST :
 
 - Implement Realloc : OK
 
-- Implement Free :
+- Implement Free : OK
   	    -Free of normalized blocks : OK
 	    -Free of unormalized block : OK
   	    -complete free : OK
 
--Speed optimization : ?
+-Speed optimization : OK
 
--Space optimization : ?
+-Space optimization : OK
 
--Security optimization : ?
+-Security optimization : NO
+
+- ADD THE CHECK FAILED_MAP TO MMAP : OK
+
+- Handle case where too much malloc of different size are done : OK
+
+-Some error may still be present but are very special cases: :/
