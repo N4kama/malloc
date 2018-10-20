@@ -4,6 +4,10 @@ size_t max_blk(struct b_meta *b_meta)
 {
     //size of page minus sizeof metadata (32)
     size_t size = b_meta->size;
+    if (!size)
+    {
+        return 0;
+    }
     size_t page_size = get_page_size(size);
     size_t max = (page_size - sizeof(struct b_meta)) / size;
     return max;
@@ -11,9 +15,9 @@ size_t max_blk(struct b_meta *b_meta)
 
 struct b_meta *find_b_meta(void *ptr)
 {
-    uintptr_t addr = (uintptr_t)ptr;
+    uintptr_t addr = cast_to_ptr(ptr);
     uintptr_t page_addr = get_page_addr(addr);
-    void *tmp = (void *)page_addr;
+    void *tmp = cast_to_void(page_addr);
     struct b_meta *res = tmp;
     return res;
 }
@@ -45,7 +49,7 @@ void update_free_ptr(struct p_meta *p_meta)
         if (f_meta->prev == f_meta)
         {
             //Last ptr was the only one, the new one is also solo then
-            new = (struct f_meta *)((uintptr_t)f_meta + p_meta->size);
+            new = cast_to_void(cast_to_ptr(f_meta) + p_meta->size);
             setup_f_list(new);
         }
         else
