@@ -14,7 +14,7 @@ void free(void __attribute__((unused)) *ptr);
 
 __attribute__((visibility("default")))
 void *realloc(void __attribute__((unused)) *ptr,
-	      size_t __attribute__((unused)) size);
+              size_t __attribute__((unused)) size);
 
 __attribute__((visibility("default")))
 void *calloc(size_t __attribute__((unused)) nmemb,
