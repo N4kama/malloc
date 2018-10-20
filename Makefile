@@ -10,5 +10,8 @@ ${TARGET_LIB}: ${OBJS}
 
 all: ${TARGET_LIB}
 
+check: all
+	./tests/testsuite.sh
+
 clean:
 	${RM} ${TARGET_LIB} ${OBJS}

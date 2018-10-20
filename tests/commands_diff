@@ -1,0 +1,44 @@
+factor 10 20 30 40 50 60
+cat Makefile
+cat -e Makefile
+cat -A Makefile
+ip a
+ls
+ls src/
+ls ../../
+ls -l
+ls -a
+ls -la
+find .
+find src/
+find tests/
+find ../../ing1
+tree
+tree tests
+tree src
+tree ../../
+od libmalloc.so
+clang --help
+tree ../../ing1
+tree ../../malloc
+find src/ ../../ing1 -name *.c -o -name *.sample
+find -type d
+find -type f
+find src/ tests/ -type f -o -type d
+find src/ tests/ -name src -o -print -name Makefile -o -print -o -print
+find -name test1 -o -name test2 -print
+find tests/ -exec pwd \;
+find src/ -exec md5sum {} \; -exec echo ok \;
+find src/ -exec pwd \; -exec echo -- {} -- \;
+tree -a
+tree -a ../../
+tree -d
+tree -d ../../
+tree -f
+tree -l
+tree -l ../../
+tree -f ../../
+tree -L 2
+tree -L 1 ../../
+tree -Q -P -s -h
+tree -Q -P -s -h ../../
