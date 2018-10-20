@@ -1,9 +1,9 @@
 TODO LIST :
 
 - Implement the sized free list : OK
-  	    - Size functions : OK
-	    - allocation of pages : OK
-	    - finding metadata and blocks : OK
+            - Size functions : OK
+            - allocation of pages : OK
+            - finding metadata and blocks : OK
 
 - Implement Malloc : OK
 
@@ -12,9 +12,9 @@ TODO LIST :
 - Implement Realloc : OK
 
 - Implement Free : OK
-  	    -Free of normalized blocks : OK
-	    -Free of unormalized block : OK
-  	    -complete free : OK
+            -Free of normalized blocks : OK
+            -Free of unormalized block : OK
+            -complete free : OK
 
 -Speed optimization : OK
 

@@ -40,7 +40,7 @@ tree -l ../../
 tree -f ../../
 tree -L 2
 tree -L 1 ../../
-tree -Q -P -s -h
+tree -Q -P -s -ht
 tree -Q -P -s -h ../../
 find tests
 find

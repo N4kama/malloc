@@ -26,7 +26,7 @@ failure() {
     printf "RESULT : \e[91mBAD\e[0m\n\n"
     if [[ "$show_my_res" =~ ^[y]+ ]]; then
         printf "STUDENT'S RESULT :\n\n$1\n\n"
-	printf "SHOULD BE :\n\n$2\n\n"
+        printf "SHOULD BE :\n\n$2\n\n"
     fi
 }
 

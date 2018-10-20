@@ -19,30 +19,9 @@ static struct b_meta *update_nb_blk(struct f_meta *f_meta)
     return res;
 }
 
-/*static unsigned int free_struct(struct p_meta *p_meta, struct b_meta *b_meta)
-{
-    //free the page corresponding to f_meta
-    //if no pages left, it will also free the meta struct in the header
-    size_t size = get_page_size(b_meta->size);
-    if (b_meta->next != b_meta)
-    {
-        b_meta->prev->next = b_meta->next;
-        b_meta->next->prev = b_meta->prev;
-        munmap(b_meta, size);
-        
-    }
-    //todo : handle the freeing in the meta struct header
-    }*/
-
 void new_free_ptr(struct p_meta *p_meta, struct f_meta *f_meta)
 {
-    //struct b_meta *b_meta =
     update_nb_blk(f_meta);
-    /*if (!b_meta->nb_blk)
-    {
-        free_struct(p_meta, b_meta);
-        return;
-        }*/
     //relink the new block with the old f_list
     if (!p_meta->f_list)
     {
