@@ -32,8 +32,8 @@ find src/ -exec md5sum {} \; -exec echo ok \;
 find src/ -exec pwd \; -exec echo -- {} -- \;
 tree -a
 tree -a ../../
-tree -depth
-tree ../../ -depth
+tree
+tree ../../
 tree -f
 tree -l
 tree -l ../../

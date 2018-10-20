@@ -61,7 +61,24 @@ void new_free_ptr(struct p_meta *p_meta, struct f_meta *f_meta)
     }
 }
 
-unsigned int  allocate_new_page(struct p_meta *p_meta)
+void *allocate_big_page(size_t size)
+{
+    size_t len = size + sizeof(struct b_meta);
+    void *addr = mmap(NULL, len, PROT_READ | PROT_WRITE, MAP_PRIVATE
+                      | MAP_ANONYMOUS, -1, 0);
+    if (addr == MAP_FAILED)
+    {
+	return NULL;
+    }
+    struct b_meta *page = addr;
+    page->size = size;
+    page->prev = NULL;
+    page->next = NULL;
+    page->nb_blk = 1;
+    return addr;
+}
+
+unsigned int allocate_new_page(struct p_meta *p_meta)
 {
     size_t len = p_meta->size + sizeof(struct b_meta);
     void *addr = mmap(NULL, len, PROT_READ | PROT_WRITE, MAP_PRIVATE
