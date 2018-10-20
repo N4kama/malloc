@@ -34,6 +34,7 @@ struct p_meta
 
 struct sized_f_list_meta
 {
+    size_t page_len;
     size_t count_sized_list;
 };
 

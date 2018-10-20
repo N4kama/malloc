@@ -101,6 +101,7 @@ static void *create_head(void)
     void *addr = mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_PRIVATE
                       | MAP_ANONYMOUS, -1, 0);
     struct sized_f_list_meta *meta = addr;
+    meta->page_len = 4096;
     meta->count_sized_list = 0;
     return addr;
 }
