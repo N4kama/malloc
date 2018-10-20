@@ -61,14 +61,14 @@ void new_free_ptr(struct p_meta *p_meta, struct f_meta *f_meta)
     }
 }
 
-void allocate_new_page(struct p_meta *p_meta)
+unsigned int  allocate_new_page(struct p_meta *p_meta)
 {
     size_t len = p_meta->size + sizeof(struct b_meta);
     void *addr = mmap(NULL, len, PROT_READ | PROT_WRITE, MAP_PRIVATE
                       | MAP_ANONYMOUS, -1, 0);
     if (addr == MAP_FAILED)
     {
-	return;
+	return 0;
     }
     struct b_meta *page = addr;
     page->size = p_meta->size;
@@ -83,9 +83,10 @@ void allocate_new_page(struct p_meta *p_meta)
     p_meta->prev = page;
     p_meta->f_list = caster(page + 1);
     setup_f_list(p_meta->f_list);
+    return 1;
 }
 
-static void check_head_size(struct sized_f_list_meta **metaa)
+static unsigned int check_head_size(struct sized_f_list_meta **metaa)
 {
     struct sized_f_list_meta *meta = *metaa;
     size_t page_meta_len = meta->count_sized_list * sizeof(struct p_meta);
@@ -97,7 +98,7 @@ static void check_head_size(struct sized_f_list_meta **metaa)
 			 MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
 	if (new == MAP_FAILED)
 	{
-	    return;
+	    return 0;
 	}
 	memcpy(new, meta, meta->page_len);
 	munmap(meta, meta->page_len);
@@ -105,12 +106,16 @@ static void check_head_size(struct sized_f_list_meta **metaa)
 	(*metaa)->page_len *= 2;
 	g_head = new;
     }
+    return 1;
 }
 
-void create_page_meta(size_t size)
+unsigned int create_page_meta(size_t size)
 {
     struct sized_f_list_meta *meta = get_head();
-    check_head_size(&meta);
+    if (!check_head_size(&meta))
+    {
+	return 0;
+    }
     struct p_meta *p_meta = caster(meta + 1);
     for (size_t i = 0; i < meta->count_sized_list; i++)
     {
@@ -121,6 +126,7 @@ void create_page_meta(size_t size)
     p_meta->next = NULL;
     p_meta->f_list = NULL;
     meta->count_sized_list += 1;
+    return 1;
 }
 
 static void *create_head(void)

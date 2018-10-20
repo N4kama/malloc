@@ -61,6 +61,10 @@ void update_free_ptr(struct p_meta *p_meta)
 struct p_meta *find_p_meta(size_t size)
 {
     struct sized_f_list_meta *sized_l = get_head();
+    if (!sized_l)
+    {
+	return NULL;
+    }
     struct p_meta *meta = caster(sized_l + 1);
     unsigned int i = 0;
     for (; i < sized_l->count_sized_list; i++)
@@ -73,7 +77,10 @@ struct p_meta *find_p_meta(size_t size)
     }
     if (i == sized_l->count_sized_list)
     {
-	create_page_meta(size);
+	if (!create_page_meta(size))
+	{
+	    return NULL;
+	}
     }
     struct sized_f_list_meta *tmp = get_head();
     struct p_meta *res = caster(tmp + 1);
@@ -91,7 +98,10 @@ void *get_free_space(struct p_meta *p_meta)
 {
     if (!p_meta->f_list)
     {
-	allocate_new_page(p_meta);
+	if (!allocate_new_page(p_meta))
+	{
+	    return NULL;
+	}
     }
     void *free_ptr = p_meta->f_list;
     update_nb_blk(free_ptr);
