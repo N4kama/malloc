@@ -66,6 +66,10 @@ void allocate_new_page(struct p_meta *p_meta)
     size_t len = p_meta->size + sizeof(struct b_meta);
     void *addr = mmap(NULL, len, PROT_READ | PROT_WRITE, MAP_PRIVATE
                       | MAP_ANONYMOUS, -1, 0);
+    if (addr == MAP_FAILED)
+    {
+	return;
+    }
     struct b_meta *page = addr;
     page->size = p_meta->size;
     if (!p_meta->next)
@@ -91,6 +95,10 @@ static void check_head_size(struct sized_f_list_meta **metaa)
 	//resize page
 	void *new = mmap(NULL, 2 * meta->page_len, PROT_READ | PROT_WRITE,
 			 MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+	if (new == MAP_FAILED)
+	{
+	    return;
+	}
 	memcpy(new, meta, meta->page_len);
 	munmap(meta, meta->page_len);
 	*metaa = new;
@@ -119,6 +127,10 @@ static void *create_head(void)
 {
     void *addr = mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_PRIVATE
                       | MAP_ANONYMOUS, -1, 0);
+    if (addr == MAP_FAILED)
+    {
+	return NULL;
+    }
     struct sized_f_list_meta *meta = addr;
     meta->page_len = 4096;
     meta->count_sized_list = 0;

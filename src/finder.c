@@ -76,7 +76,9 @@ struct p_meta *find_p_meta(size_t size)
 	create_page_meta(size);
     }
     struct sized_f_list_meta *tmp = get_head();
-    return caster(tmp + 1);
+    struct p_meta *res = caster(tmp + 1);
+    res += i;
+    return res;
 }
 
 void update_nb_blk(void *ptr)
