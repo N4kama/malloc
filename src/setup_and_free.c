@@ -29,7 +29,7 @@ static struct b_meta *update_nb_blk(struct f_meta *f_meta)
         b_meta->prev->next = b_meta->next;
         b_meta->next->prev = b_meta->prev;
         munmap(b_meta, size);
-	
+        
     }
     //todo : handle the freeing in the meta struct header
     }*/
@@ -42,7 +42,7 @@ void new_free_ptr(struct p_meta *p_meta, struct f_meta *f_meta)
     {
         free_struct(p_meta, b_meta);
         return;
-	}*/
+        }*/
     //relink the new block with the old f_list
     if (!p_meta->f_list)
     {
@@ -68,7 +68,7 @@ void *allocate_big_page(size_t size)
                       | MAP_ANONYMOUS, -1, 0);
     if (addr == MAP_FAILED)
     {
-	return NULL;
+        return NULL;
     }
     struct b_meta *page = addr;
     page->size = size;
@@ -85,7 +85,7 @@ unsigned int allocate_new_page(struct p_meta *p_meta)
                       | MAP_ANONYMOUS, -1, 0);
     if (addr == MAP_FAILED)
     {
-	return 0;
+        return 0;
     }
     struct b_meta *page = addr;
     page->size = p_meta->size;
@@ -110,18 +110,18 @@ static unsigned int check_head_size(struct sized_f_list_meta **metaa)
     page_meta_len += sizeof(struct sized_f_list_meta);
     if (page_meta_len + sizeof(struct p_meta) > meta->page_len)
     {
-	//resize page
-	void *new = mmap(NULL, 2 * meta->page_len, PROT_READ | PROT_WRITE,
-			 MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-	if (new == MAP_FAILED)
-	{
-	    return 0;
-	}
-	memcpy(new, meta, meta->page_len);
-	munmap(meta, meta->page_len);
-	*metaa = new;
-	(*metaa)->page_len *= 2;
-	g_head = new;
+        //resize page
+        void *new = mmap(NULL, 2 * meta->page_len, PROT_READ | PROT_WRITE,
+                         MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+        if (new == MAP_FAILED)
+        {
+            return 0;
+        }
+        memcpy(new, meta, meta->page_len);
+        munmap(meta, meta->page_len);
+        *metaa = new;
+        (*metaa)->page_len *= 2;
+        g_head = new;
     }
     return 1;
 }
@@ -131,7 +131,7 @@ unsigned int create_page_meta(size_t size)
     struct sized_f_list_meta *meta = get_head();
     if (!check_head_size(&meta))
     {
-	return 0;
+        return 0;
     }
     struct p_meta *p_meta = caster(meta + 1);
     for (size_t i = 0; i < meta->count_sized_list; i++)
@@ -152,7 +152,7 @@ static void *create_head(void)
                       | MAP_ANONYMOUS, -1, 0);
     if (addr == MAP_FAILED)
     {
-	return NULL;
+        return NULL;
     }
     struct sized_f_list_meta *meta = addr;
     meta->page_len = 4096;
