@@ -37,7 +37,7 @@ unsigned int no_space_in_page(void *last_f_block)
 
 void update_free_ptr(struct p_meta *p_meta)
 {
-    void * f_list = p_meta->f_list;
+    void *f_list = p_meta->f_list;
     if (no_space_in_page(f_list))
     {
         p_meta->f_list = NULL;
@@ -56,7 +56,7 @@ void update_free_ptr(struct p_meta *p_meta)
         {
             new = f_meta->next;
             f_meta->prev->next = new;
-            new->prev =f_meta->prev;
+            new->prev = f_meta->prev;
         }
         p_meta->f_list = new;
     }

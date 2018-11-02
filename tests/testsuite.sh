@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 testfile=tests/commands
 printf "Tests are set on low difficulty, set it to high ? (y/n) : "
@@ -30,7 +30,7 @@ failure() {
     fi
 }
 
-while IFS='' read -a command; do
+while IFS='' read command; do
     ((NBEXEC++))
     my_res=$(LD_PRELOAD=./libmalloc.so $command)
     res=$($command)
